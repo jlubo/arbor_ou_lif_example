@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source set_arbor_env
+
+python3 ./ou_lif_example.py

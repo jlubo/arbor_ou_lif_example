@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source set_arbor_env
+
+arbor-build-catalogue custom mechanisms
+
