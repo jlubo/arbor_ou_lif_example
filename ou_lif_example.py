@@ -86,7 +86,7 @@ class TestRecipe(arbor.recipe):
 		print("tau_mem =", tau_mem, "ms")
 
 		# background input current to all neurons (described by Ornstein-Uhlenbeck process)
-		mech_ou_bg = arbor.mechanism('ornstein_uhlenbeck_simple')
+		mech_ou_bg = arbor.mechanism('ornstein_uhlenbeck_gen')
 		mech_ou_bg.set('mean', 0.15) # mean current in nA
 		mech_ou_bg.set('stdev', 0.05) # standard deviation in nA*s^(1/2)
 		mech_ou_bg.set('tau', tau_syn) # synaptic time constant in ms
@@ -225,7 +225,7 @@ class TestRecipe(arbor.recipe):
 		return [arbor.cable_probe_membrane_voltage('"center"'), \
 				arbor.cable_probe_total_ion_current_cell(), \
 				arbor.cable_probe_point_state_cell("ornstein_uhlenbeck_pop", "I_ou"), \
-				arbor.cable_probe_point_state_cell("ornstein_uhlenbeck_simple", "I_ou")]
+				arbor.cable_probe_point_state_cell("ornstein_uhlenbeck_gen", "I_ou")]
 
 #####################################
 if __name__ == '__main__':
@@ -298,6 +298,7 @@ if __name__ == '__main__':
 	np.savetxt("spikes.txt", spike_times, fmt="%.4f")
 
 	fig, axes = plt.subplots(nrows=4, ncols=1, sharex=False, figsize=(10, 10)) # create figure with 'num_rows' subfigures
+	axes[0].set_title("random_seed = " + str(random_seed))
 	axes[0].plot(data_stacked[:,0], data_stacked[:,1], label='V', color='C3')
 	axes[0].plot(spike_times, -55*np.ones(len(spike_times)), '.', color='blue', markersize=1)
 	axes[1].plot(data_stacked[:,0], data_stacked[:,2], label='I_tot', color='C1')
@@ -308,6 +309,7 @@ if __name__ == '__main__':
 	axes[1].set_ylabel("I_tot (nA)")
 	axes[2].set_ylabel("I_stim (nA)")
 	axes[3].set_ylabel("I_bg (nA)")
-	fig.savefig("traces.png", dpi=800)
+	fig.savefig("traces.svg")
+	#fig.savefig("traces.png", dpi=800)
 	#plt.show()
 	

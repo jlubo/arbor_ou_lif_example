@@ -1,7 +1,7 @@
 : Input current modeled by an Ornstein-Uhlenbeck process (given mean and standard deviation)
 
 NEURON {
-	POINT_PROCESS ornstein_uhlenbeck_simple
+	POINT_PROCESS ornstein_uhlenbeck_gen
 	RANGE mean, stdev, tau
 	NONSPECIFIC_CURRENT I
 }
