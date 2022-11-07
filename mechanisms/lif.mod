@@ -1,4 +1,5 @@
 : Leaky-integrate and fire neuron
+: based on the LIF mechanism written by Sebastian Schmitt (https://github.com/tetzlab/FIPPA/blob/main/STDP/mechanisms/lif.mod)
 
 NEURON {
 	SUFFIX lif
