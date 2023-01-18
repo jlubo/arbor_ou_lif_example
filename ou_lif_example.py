@@ -101,9 +101,9 @@ class TestRecipe(arbor.recipe):
 		decor.place('"center"', arbor.synapse(mech_ou_stim), "ou_stim")		
 
 		# place spike detector
-		decor.place('"center"', arbor.spike_detector(V_th), "spike_detector")
+		decor.place('"center"', arbor.threshold_detector(V_th), "spike_detector")
 			
-		return arbor.cable_cell(tree, labels, decor)
+		return arbor.cable_cell(tree, decor, labels)
 		
 	# connections_on
 	# Defines the list of incoming synaptic connections to the neuron given by gid
@@ -233,6 +233,8 @@ if __name__ == '__main__':
 	#####################################
 	# set up and run simulation
 	recipe = TestRecipe()
+
+	print("Arbor version: " + str(arbor.__version__))
 
 	random_seed = int(time.time()*10000) # get random seed from system clock
 	print("random_seed = " + str(random_seed))
